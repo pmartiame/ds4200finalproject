@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Music Listening Analysis</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-title">🎵 Seasonal Music Analysis</div>
+        <div class="nav-links">
+            <a href="#intro">Intro</a>
+            <a href="#data">Data</a>
+            <a href="#visualizations">Visualizations</a>
+            <a href="#d3-viz-section">D3 Sunburst</a>
+            <a href="#conclusion">Conclusion</a>
+        </div>
+    </nav>
+
+    <!-- Slide 2: Introduction -->
+    <section id="intro" class="section">
+        <div class="content-box">
+            <h2>INTRODUCTION</h2>
+            <h3>Why it is interesting and why do we want to study it?</h3>
+            <ul>
+                <li>Music preferences shift with seasons, reflecting changes in mood, activities, and cultural moments throughout the year.</li>
+                <li>Seasonal patterns reveal how weather, holidays, and life rhythms influence the genres people choose at different times.</li>
+                <li>Understanding yearly trends uncovers when certain genres peak and how listening habits evolve across months.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Data Section -->
+    <section id="data" class="section">
+        <div class="content-box">
+            <h2>DATA</h2>
+            <h3>Which data you have used?</h3>
+            <ul>
+                <li>Last.fm Dataset (350k users)</li>
+                <li><a href="https://www.upf.edu/web/mtg/lastfm360k" style="color: #4dd0e1;">https://www.upf.edu/web/mtg/lastfm360k</a></li>
+                <li>Real user listening history with artist play counts</li>
+            </ul>
+            
+            <h3>Data Size</h3>
+            <ul>
+                <li><strong>Original dataset:</strong> 17.5 million user-artist records from 358,868 users</li>
+                <li><strong>Sampled:</strong> 50,000 records for analysis</li>
+                <li><strong>Generated listening events:</strong> 2,039,174 timestamped plays across 2024</li>
+                <li><strong>Unique artists:</strong> 292,363</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Data Attributes Section -->
+    <section class="section">
+        <div class="content-box">
+            <h2>DATA ATTRIBUTES</h2>
+            <h3>Original attributes:</h3>
+            <ul>
+                <li><strong>user_id</strong> – Anonymous user identifier</li>
+                <li><strong>artist_mbid</strong> – MusicBrainz artist ID</li>
+                <li><strong>artist</strong> – Artist name</li>
+                <li><strong>plays</strong> – Number of times user listened to artist</li>
+            </ul>
+            
+            <h3>Generated attributes:</h3>
+            <ul>
+                <li><strong>genre</strong> – Assigned based on artist</li>
+                <li><strong>timestamp</strong> – listening date in 2024</li>
+            </ul>
+            
+            <h3>Derived Attributes:</h3>
+            <ul>
+                <li><strong>month</strong> – Month</li>
+                <li><strong>month_name</strong> – Month name</li>
+                <li><strong>season</strong> – Season</li>
+                <li><strong>week_of_year</strong> – Week number</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualization 1 -->
+    <section id="visualizations" class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization1_1.png" alt="Genre Listening Trends Throughout the Year">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 1 Part 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization1_2.png" alt="Genre Listening Trends Throughout the Year with Tooltip">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Analysis -->
+    <section class="section">
+        <div class="content-box">
+            <h2>ANALYSIS</h2>
+            <h3>Peak Summer Listening:</h3>
+            <ul>
+                <li>Music listening peaks in summer at ~44,000 plays, dropping to ~34,000 in winter months.</li>
+            </ul>
+            <h3>Pop Dominates Year-Round:</h3>
+            <ul>
+                <li>Pop is the most popular genre across all seasons, followed by Hip-Hop and Rock.</li>
+            </ul>
+            <h3>Seasonal Genre Preferences:</h3>
+            <ul>
+                <li>Upbeat genres (Pop, Hip-Hop, Electronic) surge in summer while Jazz and Classical peak in winter.</li>
+            </ul>
+            <h3>Electronic Shows Strongest Seasonality:</h3>
+            <ul>
+                <li>Electronic music nearly doubles from winter to summer, showing the most dramatic weather-dependent pattern.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualization 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization2_1.png" alt="Genre Distribution by Season">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 2 Part 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization2_2.png" alt="Genre Distribution by Season with Tooltip">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Analysis -->
+    <section class="section">
+        <div class="content-box">
+            <h2>ANALYSIS</h2>
+            <h3>Summer Has Highest Listening Volume:</h3>
+            <ul>
+                <li>Summer shows the tallest bar at ~576k total plays, while Winter has the lowest at ~453k plays.</li>
+            </ul>
+            <h3>Pop Dominates All Seasons:</h3>
+            <ul>
+                <li>Pop (yellow/gold) is the largest segment in every season, representing roughly 20-25% of all plays.</li>
+            </ul>
+            <h3>Seasonal Composition Changes:</h3>
+            <ul>
+                <li>Summer bars show proportionally more Pop, Hip-Hop, and Electronic (upper sections expand), while Winter shows relatively more Jazz and Classical.</li>
+            </ul>
+            <h3>Consistent Genre Distribution:</h3>
+            <ul>
+                <li>Despite volume changes, the relative ordering of genres remains stable across seasons, with Pop, Hip-Hop, and Rock consistently forming the top three layers.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualization 3 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization3_1.png" alt="Heatmap: Genre Popularity by Month">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 3 Part 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION</h2>
+            <div class="viz-container">
+                <img src="images/visualization3_2.png" alt="Heatmap: Genre Popularity by Month with Tooltip">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Analysis -->
+    <section class="section">
+        <div class="content-box">
+            <h2>ANALYSIS</h2>
+            <h3>Pop Peaks in Summer Months:</h3>
+            <ul>
+                <li>Pop shows the darkest red cells in June-August, indicating highest play counts during summer (~3k-14k plays per month).</li>
+            </ul>
+            <h3>Jazz and Classical:</h3>
+            <ul>
+                <li>Jazz and Classical show their darkest colors in December-February, demonstrating counter-seasonal patterns compared to other genres.</li>
+            </ul>
+            <h3>Electronic is Most Summer-Dependent:</h3>
+            <ul>
+                <li>Electronic displays the sharpest contrast between winter (light yellow: ~3-4k) and summer (deep orange: ~6-8k), showing strongest seasonal variation.</li>
+            </ul>
+            <h3>Most Genres Follow Similar Pattern:</h3>
+            <ul>
+                <li>Hip-Hop, Rock, Indie, Metal, and Folk all show warmer colors (more plays) in the May-August period, indicating a shared summer preference.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualization 4 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (ALTAIR)</h2>
+            <div class="viz-container">
+                <img src="images/visualization4_1.png" alt="Genre Listening Patterns Throughout the Year (Altair)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 4 Part 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (ALTAIR)</h2>
+            <div class="viz-container">
+                <img src="images/visualization4_2.png" alt="Genre Listening Patterns Throughout the Year (Altair Interactive)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 4 Part 3 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (ALTAIR)</h2>
+            <div class="viz-container">
+                <img src="images/visualization4_3.png" alt="Genre Listening Patterns Throughout the Year (Altair Detail)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Analysis -->
+    <section class="section">
+        <div class="content-box">
+            <h2>ANALYSIS</h2>
+            <h3>Clear Summer Peak Pattern:</h3>
+            <ul>
+                <li>The stacked area chart shows total listening volume rising from ~15k plays in winter to ~45k in summer (weeks 20-30), with declining back through fall.</li>
+            </ul>
+            <h3>Pop Forms the Rock-Solid Base:</h3>
+            <ul>
+                <li>Pop (purple base layer) remains consistently the largest single genre throughout the year, providing a stable ~8k-14k plays per week at different times of season.</li>
+            </ul>
+            <h3>Mid-Year Genre Expansion:</h3>
+            <ul>
+                <li>All genre layers visibly broaden during summer months (May-August), showing that seasonal increases affect multiple genres simultaneously, not just one.</li>
+            </ul>
+            <h3>Interactive Highlight Features:</h3>
+            <ul>
+                <li>The second visualization shows brush selection capability, allowing users to isolate specific time periods and see detailed breakdowns in the side bar chart for deeper analysis.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualization 5 - D3 Live -->
+    <section id="d3-viz-section" class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (D3)</h2>
+            <div class="chart-title">🌍 Seasonal Genre Distribution - Interactive Sunburst</div>
+            <div id="chart"></div>
+        </div>
+    </section>
+
+    <!-- Visualization 5 Part 2 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (D3)</h2>
+            <div class="viz-container">
+                <img src="images/visualization5_2.png" alt="D3 Sunburst - Interactive View">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization 5 Part 3 -->
+    <section class="section">
+        <div class="content-box">
+            <h2>VISUALIZATION (D3)</h2>
+            <div class="viz-container">
+                <img src="images/visualization5_3.png" alt="D3 Sunburst - Detail View">
+            </div>
+        </div>
+    </section>
+
+    <!-- Visualization Analysis -->
+    <section class="section">
+        <div class="content-box">
+            <h2>ANALYSIS</h2>
+            <h3>Hierarchical Season-Genre Structure:</h3>
+            <ul>
+                <li>The sunburst organizes 4 top-level hierarchy with seasonal (inner ring) divided into genre segments (outer ring), showing the entire system in one radial view by genre.</li>
+            </ul>
+            <h3>Fall Has Largest Share:</h3>
+            <ul>
+                <li>Fall (red quadrant) occupies the largest portion of the circle, indicating it had the most total plays (~508k), followed by Summer, Spring, and Winter.</li>
+            </ul>
+            <h3>Pop Dominates Within Each Season:</h3>
+            <ul>
+                <li>Pop forms the largest outer segment within every seasonal quadrant, confirming its year-round dominance regardless of season.</li>
+            </ul>
+            <h3>Interactive Genre Details:</h3>
+            <ul>
+                <li>The tooltip (visible in second image) reveals exact play counts when hovering over segments, showing Fall-Pop had 101,943 plays, making data exploration intuitive and precise.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section id="conclusion" class="section">
+        <div class="content-box">
+            <h2>CONCLUSION</h2>
+            <h3>Strong Seasonal Patterns:</h3>
+            <ul>
+                <li>Summer listening peaks 30% higher than winter, driven by weather and lifestyle changes.</li>
+            </ul>
+            <h3>Pop Dominates Year-Round:</h3>
+            <ul>
+                <li>Pop consistently represents 20-25% of all plays across every season.</li>
+            </ul>
+            <h3>Moods Match the Season:</h3>
+            <ul>
+                <li>Upbeat genres (Pop, Hip-Hop, Electronic) surge in summer while calmer genres (Jazz, Classical) peak in winter.</li>
+            </ul>
+            <h3>Strategic Opportunities:</h3>
+            <ul>
+                <li>Platforms and artists can optimize releases and recommendations by aligning with predictable seasonal genre preferences.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Thank You -->
+    <section id="thank-you" class="section">
+        <div class="content-box">
+            <h1>THANK YOU FOR LISTENING!!</h1>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
