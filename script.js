@@ -95,6 +95,12 @@ const arc = d3.arc()
     .innerRadius(d => d.y0)
     .outerRadius(d => d.y1);
 
+// Create tooltip
+const tooltip = d3.select("body")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 // Draw arcs
 svg.selectAll("path")
     .data(root.descendants().filter(d => d.depth > 0))
@@ -106,7 +112,34 @@ svg.selectAll("path")
         return d3.color(color(d.parent.data.name)).brighter(0.5);
     })
     .style("stroke", "white")
-    .style("stroke-width", 2);
+    .style("stroke-width", 2)
+    .style("cursor", "pointer")
+    .on("mouseover", function(event, d) {
+        d3.select(this)
+            .style("opacity", 0.8);
+
+        tooltip.transition()
+            .duration(200)
+            .style("opacity", 0.9)
+            .style("display", "block");
+
+        const label = d.depth === 1 ? d.data.name : 
+                      `${d.parent.data.name} - ${d.data.name}`;
+        const value = d.value ? d.value.toLocaleString() : "";
+
+        tooltip.html(`${label}<br/>${value} plays`)
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", function(d) {
+        d3.select(this)
+            .style("opacity", 1);
+
+        tooltip.transition()
+            .duration(500)
+            .style("opacity", 0)
+            .style("display", "none");
+    });
 
 // Add labels for seasons
 svg.selectAll("text")
