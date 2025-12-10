@@ -13,21 +13,40 @@
         <div class="nav-links">
             <a href="#intro">Intro</a>
             <a href="#data">Data</a>
-            <a href="#visualizations">Visualizations</a>
-            <a href="#d3-viz-section">D3 Sunburst</a>
+            <a href="#rq1">RQ1</a>
+            <a href="#rq2">RQ2</a>
+            <a href="#rq3">RQ3</a>
             <a href="#conclusion">Conclusion</a>
         </div>
     </nav>
 
-    <!-- Slide 2: Introduction -->
-    <section id="intro" class="section">
+    <!-- Introduction -->
+    <section id="intro" class="section intro-section">
         <div class="content-box">
-            <h2>INTRODUCTION</h2>
-            <h3>Why it is interesting and why do we want to study it?</h3>
+            <h1>Seasonal Music Listening Patterns</h1>
+            <h2>Understanding How Seasons Shape Our Musical Choices</h2>
+            
+            <p>Music is deeply intertwined with our emotions, activities, and environment. This project explores how seasonal changes influence music listening patterns across different genres throughout the year.</p>
+            
+            <h3>Why This Matters</h3>
             <ul>
-                <li>Music preferences shift with seasons, reflecting changes in mood, activities, and cultural moments throughout the year.</li>
-                <li>Seasonal patterns reveal how weather, holidays, and life rhythms influence the genres people choose at different times.</li>
-                <li>Understanding yearly trends uncovers when certain genres peak and how listening habits evolve across months.</li>
+                <li>Music preferences shift with seasons, reflecting changes in mood, activities, and cultural moments throughout the year</li>
+                <li>Seasonal patterns reveal how weather, holidays, and life rhythms influence the genres people choose at different times</li>
+                <li>Understanding yearly trends uncovers when certain genres peak and how listening habits evolve across months</li>
+            </ul>
+
+            <h3>Research Questions</h3>
+            <ul>
+                <li><strong>RQ1:</strong> How do overall listening volumes vary across seasons and throughout the year?</li>
+                <li><strong>RQ2:</strong> Which genres dominate each season, and how do their relative popularities shift?</li>
+                <li><strong>RQ3:</strong> What hierarchical patterns emerge when analyzing seasonal and genre distributions together?</li>
+            </ul>
+
+            <h3>Key References</h3>
+            <ul>
+                <li><a href="https://www.upf.edu/web/mtg/lastfm360k" target="_blank">Last.fm Dataset - Music Technology Group, UPF</a></li>
+                <li><a href="https://musicbrainz.org/" target="_blank">MusicBrainz - Open Music Encyclopedia</a></li>
+                <li><a href="https://www.billboard.com/charts/" target="_blank">Billboard Charts - Music Industry Trends</a></li>
             </ul>
         </div>
     </section>
@@ -35,14 +54,16 @@
     <!-- Data Section -->
     <section id="data" class="section">
         <div class="content-box">
-            <h2>DATA</h2>
-            <h3>Which data you have used?</h3>
-            <ul>
-                <li>Last.fm Dataset (350k users)</li>
-                <li><a href="https://www.upf.edu/web/mtg/lastfm360k" style="color: #4dd0e1;">https://www.upf.edu/web/mtg/lastfm360k</a></li>
-                <li>Real user listening history with artist play counts</li>
-            </ul>
+            <h2>DATA OVERVIEW</h2>
             
+            <h3>Dataset Source</h3>
+            <p>The Last.fm-360K dataset contains real user listening histories collected from Last.fm, a music streaming and recommendation platform.</p>
+            <ul>
+                <li><strong>Source:</strong> Last.fm Dataset (360K users)</li>
+                <li><strong>URL:</strong> <a href="https://www.upf.edu/web/mtg/lastfm360k" target="_blank">https://www.upf.edu/web/mtg/lastfm360k</a></li>
+                <li><strong>Description:</strong> Real user listening history with artist play counts</li>
+            </ul>
+
             <h3>Data Size</h3>
             <ul>
                 <li><strong>Original dataset:</strong> 17.5 million user-artist records from 358,868 users</li>
@@ -51,7 +72,7 @@
                 <li><strong>Unique artists:</strong> 292,363</li>
             </ul>
 
-            <h3>Original attributes:</h3>
+            <h3>Original Attributes</h3>
             <ul>
                 <li><strong>user_id</strong> – Anonymous user identifier</li>
                 <li><strong>artist_mbid</strong> – MusicBrainz artist ID</li>
@@ -59,228 +80,177 @@
                 <li><strong>plays</strong> – Number of times user listened to artist</li>
             </ul>
             
-            <h3>Generated attributes:</h3>
+            <h3>Generated Attributes</h3>
             <ul>
-                <li><strong>genre</strong> – Assigned based on artist</li>
-                <li><strong>timestamp</strong> – listening date in 2024</li>
+                <li><strong>genre</strong> – Assigned based on artist (Pop, Hip-Hop, Rock, Electronic, Indie, Metal, Jazz, Classical, Folk, Alternative)</li>
+                <li><strong>timestamp</strong> – Listening date in 2024</li>
             </ul>
             
-            <h3>Derived Attributes:</h3>
+            <h3>Derived Attributes</h3>
             <ul>
-                <li><strong>month</strong> – Month</li>
-                <li><strong>month_name</strong> – Month name</li>
-                <li><strong>season</strong> – Season</li>
-                <li><strong>week_of_year</strong> – Week number</li>
+                <li><strong>month</strong> – Month number (1-12)</li>
+                <li><strong>month_name</strong> – Month name (Jan-Dec)</li>
+                <li><strong>season</strong> – Winter (Dec-Feb), Spring (Mar-May), Summer (Jun-Aug), Fall (Sep-Nov)</li>
+                <li><strong>week_of_year</strong> – Week number (1-52)</li>
+                <li><strong>holiday_period</strong> – Regular, Summer Holiday, Thanksgiving, Christmas/New Year</li>
             </ul>
         </div>
     </section>
 
-    <!-- Visualization 1 -->
-    <section id="visualizations" class="section">
+    <!-- VISUALIZATION 1: Weekly Stacked Area Chart (Plotly) -->
+    <section id="rq1" class="section rq-section">
         <div class="content-box">
-            <h2>VISUALIZATION</h2>
+            <h2>VISUALIZATION 1: TEMPORAL TRENDS</h2>
+            <h3 class="rq-title">RQ1: How do overall listening volumes vary across seasons and throughout the year?</h3>
+            
             <div class="viz-container">
-                <img src="images/visualization1_1.png" alt="Genre Listening Trends Throughout the Year">
+                <iframe src="visualization4_interactive.html" class="viz-iframe" title="Weekly Genre Listening Patterns"></iframe>
             </div>
+
+            <h3>Key Findings</h3>
+            <ul>
+                <li><strong>Peak Summer Listening:</strong> Music listening peaks in summer at ~44,000 plays per week, dropping to ~34,000 in winter months (30% increase)</li>
+                <li><strong>Gradual Transitions:</strong> Listening volume gradually increases from January through July, then steadily decreases through December - showing smooth seasonal shifts</li>
+                <li><strong>Pop Forms Stable Base:</strong> Pop (gold) remains consistently the largest single genre throughout the year, providing a stable base layer of ~8k-14k plays per week</li>
+                <li><strong>All Genres Rise Together:</strong> All genre layers visibly broaden during summer months (May-August), showing that seasonal increases affect multiple genres simultaneously</li>
+            </ul>
+
+            <h3>Design Rationale</h3>
+            <p>The stacked area chart excels at showing temporal trends with composition. Weekly granularity (52 data points) captures seasonal transitions smoothly while avoiding daily noise. The stacking reveals both absolute volumes (total height) and genre contributions (layer thickness) simultaneously. Consistent genre colors enable pattern recognition across all visualizations.</p>
+        </div>
+    </section>
+
+    <!-- VISUALIZATION 2: Seasonal Stacked Bar Chart (Plotly) -->
+    <section id="rq2-1" class="section rq-section">
+        <div class="content-box">
+            <h2>VISUALIZATION 2: SEASONAL COMPARISON</h2>
+            <h3 class="rq-title">RQ2: Which genres dominate each season, and how do their relative popularities shift?</h3>
+            
             <div class="viz-container">
-                <img src="images/visualization1_2.png" alt="Genre Listening Trends Throughout the Year with Tooltip">
+                <iframe src="visualization2_interactive.html" class="viz-iframe" title="Seasonal Genre Distribution"></iframe>
             </div>
+
+            <h3>Key Findings</h3>
+            <ul>
+                <li><strong>Summer Has Highest Volume:</strong> Summer shows the tallest bar at ~576k total plays, while Winter has the lowest at ~453k plays</li>
+                <li><strong>Pop Dominates All Seasons:</strong> Pop (gold) is the largest segment in every season, representing roughly 20-25% of all plays</li>
+                <li><strong>Electronic Shows Strongest Seasonality:</strong> Electronic music (purple) nearly doubles from winter (~35k) to summer (~68k), showing the most dramatic seasonal variation</li>
+                <li><strong>Jazz/Classical Counter-Trend:</strong> These calmer genres show relatively higher proportions in winter, bucking the overall upward summer trend</li>
+            </ul>
+
+            <h3>Design Rationale</h3>
+            <p>Stacked bars enable direct comparison between discrete seasonal periods while preserving genre composition. The four-bar layout makes cross-season differences immediately visible. Bar heights show absolute volumes while segment sizes reveal relative contributions. This complements Visualization 1 by aggregating weekly data into seasonal summaries.</p>
         </div>
     </section>
 
-    <!-- Visualization Analysis -->
-    <section class="section">
+    <!-- VISUALIZATION 3: Heatmap (Plotly) -->
+    <section id="rq2-2" class="section rq-section">
         <div class="content-box">
-            <h2>ANALYSIS</h2>
-            <h3>Peak Summer Listening:</h3>
-            <ul>
-                <li>Music listening peaks in summer at ~44,000 plays, dropping to ~34,000 in winter months.</li>
-            </ul>
-            <h3>Pop Dominates Year-Round:</h3>
-            <ul>
-                <li>Pop is the most popular genre across all seasons, followed by Hip-Hop and Rock.</li>
-            </ul>
-            <h3>Seasonal Genre Preferences:</h3>
-            <ul>
-                <li>Upbeat genres (Pop, Hip-Hop, Electronic) surge in summer while Jazz and Classical peak in winter.</li>
-            </ul>
-            <h3>Electronic Shows Strongest Seasonality:</h3>
-            <ul>
-                <li>Electronic music nearly doubles from winter to summer, showing the most dramatic weather-dependent pattern.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Visualization 2 -->
-    <section class="section">
-        <div class="content-box">
-            <h2>VISUALIZATION</h2>
+            <h2>VISUALIZATION 3: MONTHLY HEATMAP</h2>
+            <h3 class="rq-title">RQ2: Detailed monthly patterns and genre-specific seasonal behaviors</h3>
+            
             <div class="viz-container">
-                <img src="images/visualization2_1.png" alt="Genre Distribution by Season">
+                <iframe src="visualization3_interactive.html" class="viz-iframe" title="Genre Popularity Heatmap by Month"></iframe>
             </div>
+
+            <h3>Key Findings</h3>
+            <ul>
+                <li><strong>Pop Peaks June-August:</strong> Pop shows the darkest red cells in summer months, indicating highest play counts (~12k-14k plays per month)</li>
+                <li><strong>Electronic's Sharp Contrast:</strong> Electronic displays the most dramatic color shift - light yellow in winter (~3-4k) to deep orange in summer (~6-8k)</li>
+                <li><strong>Jazz/Classical Winter Preference:</strong> These genres show their darkest colors in December-February, demonstrating clear counter-seasonal patterns</li>
+                <li><strong>Gradual Month-to-Month Changes:</strong> Colors transition smoothly across months rather than jumping abruptly, confirming gradual preference shifts</li>
+            </ul>
+
+            <h3>Design Rationale</h3>
+            <p>Heatmaps excel at revealing two-dimensional patterns through color intensity. The 10×12 grid (genres × months) provides finer temporal resolution than seasonal aggregations, revealing gradual transitions. The sequential color scale (yellow→orange→red) intuitively maps to increasing play counts. This unique view type complements the previous charts by showing all genre-month combinations simultaneously.</p>
+        </div>
+    </section>
+
+    <!-- VISUALIZATION 4: Holiday Period Analysis (Plotly) -->
+    <section id="rq2-3" class="section rq-section">
+        <div class="content-box">
+            <h2>VISUALIZATION 4: HOLIDAY EFFECTS</h2>
+            <h3 class="rq-title">How do special periods (holidays) affect listening patterns compared to regular times?</h3>
+            
             <div class="viz-container">
-                <img src="images/visualization2_2.png" alt="Genre Distribution by Season with Tooltip">
+                <iframe src="visualization6_holiday_interactive.html" class="viz-iframe" title="Holiday Period Analysis"></iframe>
             </div>
+
+            <h3>Key Findings</h3>
+            <ul>
+                <li><strong>Regular Periods Dominate:</strong> Non-holiday "Regular" periods account for the vast majority of listening activity across all genres</li>
+                <li><strong>Summer Holiday Surge:</strong> Summer holiday period (weeks 27-35) shows elevated listening across all genres, particularly Pop and Hip-Hop</li>
+                <li><strong>Holiday Genre Preferences:</strong> Christmas/New Year period shows relatively higher Classical and Jazz listening compared to other holiday periods</li>
+                <li><strong>Thanksgiving Stability:</strong> Thanksgiving shows more modest changes, suggesting travel/family time may reduce overall listening without shifting genre preferences dramatically</li>
+            </ul>
+
+            <h3>Design Rationale</h3>
+            <p>Grouped bars enable comparison of the same genre across different time periods (regular vs. various holidays). Unlike stacked bars, grouping emphasizes within-genre comparisons across conditions. This addresses the professor's feedback about exploring special events and reduces redundancy by providing a completely different analytical perspective from seasonal aggregations.</p>
         </div>
     </section>
 
-    <!-- Visualization Analysis -->
-    <section class="section">
+    <!-- VISUALIZATION 5: D3 Sunburst -->
+    <section id="rq3" class="section rq-section">
         <div class="content-box">
-            <h2>ANALYSIS</h2>
-            <h3>Summer Has Highest Listening Volume:</h3>
-            <ul>
-                <li>Summer shows the tallest bar at ~576k total plays, while Winter has the lowest at ~453k plays.</li>
-            </ul>
-            <h3>Pop Dominates All Seasons:</h3>
-            <ul>
-                <li>Pop (yellow/gold) is the largest segment in every season, representing roughly 20-25% of all plays.</li>
-            </ul>
-            <h3>Seasonal Composition Changes:</h3>
-            <ul>
-                <li>Summer bars show proportionally more Pop, Hip-Hop, and Electronic (upper sections expand), while Winter shows relatively more Jazz and Classical.</li>
-            </ul>
-            <h3>Consistent Genre Distribution:</h3>
-            <ul>
-                <li>Despite volume changes, the relative ordering of genres remains stable across seasons, with Pop, Hip-Hop, and Rock consistently forming the top three layers.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Visualization 3 -->
-    <section class="section">
-        <div class="content-box">
-            <h2>VISUALIZATION</h2>
+            <h2>VISUALIZATION 5: HIERARCHICAL STRUCTURE (D3)</h2>
+            <h3 class="rq-title">RQ3: What hierarchical patterns emerge when analyzing seasonal and genre distributions together?</h3>
+            
             <div class="viz-container">
-                <img src="images/visualization3_1.png" alt="Heatmap: Genre Popularity by Month">
+                <div class="chart-title">🌍 Seasonal Genre Distribution - Interactive Sunburst</div>
+                <div id="chart"></div>
             </div>
-            <div class="viz-container">
-                <img src="images/visualization3_2.png" alt="Heatmap: Genre Popularity by Month with Tooltip">
-            </div>
-        </div>
-    </section>
 
-    <!-- Visualization Analysis -->
-    <section class="section">
-        <div class="content-box">
-            <h2>ANALYSIS</h2>
-            <h3>Pop Peaks in Summer Months:</h3>
+            <h3>Key Findings</h3>
             <ul>
-                <li>Pop shows the darkest red cells in June-August, indicating highest play counts during summer (~3k-14k plays per month).</li>
+                <li><strong>Two-Level Hierarchy Revealed:</strong> The sunburst clearly shows the season→genre hierarchy, with inner ring showing seasonal totals and outer ring breaking each season into genres</li>
+                <li><strong>Summer Largest Quadrant:</strong> Summer occupies the largest arc (~28% of circle) with ~576k plays, while Winter is smallest (~22%) with ~453k plays</li>
+                <li><strong>Pop Dominates Every Quadrant:</strong> Within each seasonal section, Pop consistently forms the largest outer segment, visually confirming its universal appeal</li>
+                <li><strong>Proportional Consistency:</strong> Despite absolute size differences, the relative proportions of genres within each season remain remarkably stable - visible as similarly-shaped wedge patterns in each quadrant</li>
             </ul>
-            <h3>Jazz and Classical:</h3>
-            <ul>
-                <li>Jazz and Classical show their darkest colors in December-February, demonstrating counter-seasonal patterns compared to other genres.</li>
-            </ul>
-            <h3>Electronic is Most Summer-Dependent:</h3>
-            <ul>
-                <li>Electronic displays the sharpest contrast between winter (light yellow: ~3-4k) and summer (deep orange: ~6-8k), showing strongest seasonal variation.</li>
-            </ul>
-            <h3>Most Genres Follow Similar Pattern:</h3>
-            <ul>
-                <li>Hip-Hop, Rock, Indie, Metal, and Folk all show warmer colors (more plays) in the May-August period, indicating a shared summer preference.</li>
-            </ul>
-        </div>
-    </section>
 
-    <!-- Visualization 4 - Altair -->
-    <section class="section">
-        <div class="content-box">
-            <h2>VISUALIZATION (ALTAIR)</h2>
-            <div class="viz-container">
-                <img src="images/visualization4_1.png" alt="Genre Listening Patterns Throughout the Year (Altair)">
-            </div>
-            <div class="viz-container">
-                <img src="images/visualization4_2.png" alt="Genre Listening Patterns Throughout the Year (Altair Interactive)">
-            </div>
-            <div class="viz-container">
-                <img src="images/visualization4_3.png" alt="Genre Listening Patterns Throughout the Year (Altair Detail)">
-            </div>
-        </div>
-    </section>
-
-    <!-- Visualization Analysis -->
-    <section class="section">
-        <div class="content-box">
-            <h2>ANALYSIS</h2>
-            <h3>Clear Summer Peak Pattern:</h3>
-            <ul>
-                <li>The stacked area chart shows total listening volume rising from ~15k plays in winter to ~45k in summer (weeks 20-30), with declining back through fall.</li>
-            </ul>
-            <h3>Pop Forms the Rock-Solid Base:</h3>
-            <ul>
-                <li>Pop (purple base layer) remains consistently the largest single genre throughout the year, providing a stable ~8k-14k plays per week at different times of season.</li>
-            </ul>
-            <h3>Mid-Year Genre Expansion:</h3>
-            <ul>
-                <li>All genre layers visibly broaden during summer months (May-August), showing that seasonal increases affect multiple genres simultaneously, not just one.</li>
-            </ul>
-            <h3>Interactive Highlight Features:</h3>
-            <ul>
-                <li>The second visualization shows brush selection capability, allowing users to isolate specific time periods and see detailed breakdowns in the side bar chart for deeper analysis.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Visualization 5 - D3 -->
-    <section id="d3-viz-section" class="section">
-        <div class="content-box">
-            <h2>VISUALIZATION (D3)</h2>
-            <div class="chart-title">🌍 Seasonal Genre Distribution - Interactive Sunburst</div>
-            <div id="chart"></div>
-        </div>
-    </section>
-
-    <!-- Visualization Analysis -->
-    <section class="section">
-        <div class="content-box">
-            <h2>ANALYSIS</h2>
-            <h3>Hierarchical Season-Genre Structure:</h3>
-            <ul>
-                <li>The sunburst organizes 4 top-level hierarchy with seasonal (inner ring) divided into genre segments (outer ring), showing the entire system in one radial view by genre.</li>
-            </ul>
-            <h3>Fall Has Largest Share:</h3>
-            <ul>
-                <li>Fall (red quadrant) occupies the largest portion of the circle, indicating it had the most total plays (~508k), followed by Summer, Spring, and Winter.</li>
-            </ul>
-            <h3>Pop Dominates Within Each Season:</h3>
-            <ul>
-                <li>Pop forms the largest outer segment within every seasonal quadrant, confirming its year-round dominance regardless of season.</li>
-            </ul>
-            <h3>Interactive Genre Details:</h3>
-            <ul>
-                <li>The tooltip (visible in second image) reveals exact play counts when hovering over segments, showing Fall-Pop had 101,943 plays, making data exploration intuitive and precise.</li>
-            </ul>
+            <h3>Design Rationale</h3>
+            <p>Sunburst diagrams uniquely show hierarchical part-to-whole relationships in a radial format. The circular layout efficiently uses space to display all season-genre combinations simultaneously. Inner ring uses season colors (blue/green/orange/red) while outer ring uses genre colors, creating visual coherence with other visualizations. This D3.js implementation provides the required interactive custom visualization while offering a completely different perspective from the Plotly linear/grid layouts.</p>
         </div>
     </section>
 
     <!-- Conclusion -->
-    <section id="conclusion" class="section">
+    <section id="conclusion" class="section conclusion-section">
         <div class="content-box">
-            <h2>CONCLUSION</h2>
-            <h3>Strong Seasonal Patterns:</h3>
+            <h2>CONCLUSIONS & RECOMMENDATIONS</h2>
+            
+            <h3>Key Findings Summary</h3>
             <ul>
-                <li>Summer listening peaks 30% higher than winter, driven by weather and lifestyle changes.</li>
+                <li><strong>Strong Seasonal Patterns:</strong> Summer listening peaks 30% higher than winter, driven by weather and lifestyle changes, with gradual rather than abrupt transitions</li>
+                <li><strong>Pop Dominates Year-Round:</strong> Pop consistently represents 20-25% of all plays across every season, confirmed across all five visualizations</li>
+                <li><strong>Genre-Specific Seasonality:</strong> Electronic music shows the strongest seasonal variation (doubling in summer), while Jazz and Classical counter-trend with winter peaks</li>
+                <li><strong>Holiday Effects Are Real:</strong> Special periods show distinct patterns, with summer holidays amplifying the seasonal peak and winter holidays favoring contemplative genres</li>
             </ul>
-            <h3>Pop Dominates Year-Round:</h3>
+
+            <h3>Strategic Recommendations</h3>
             <ul>
-                <li>Pop consistently represents 20-25% of all plays across every season.</li>
+                <li><strong>For Streaming Platforms:</strong> Implement seasonal recommendation algorithms that boost upbeat genres in summer and contemplative genres in winter. Pre-load seasonal playlists 2-4 weeks before transitions to match gradual preference shifts.</li>
+                <li><strong>For Artists & Labels:</strong> Time album releases strategically - electronic and pop artists should target late spring/early summer (April-May), while jazz and classical artists should consider fall/winter releases (October-November).</li>
+                <li><strong>For Playlist Curators:</strong> Create season-specific playlists that blend dominant genres with emerging seasonal preferences. Update compositions monthly to reflect gradual taste evolution shown in the heatmap.</li>
+                <li><strong>For Marketing Teams:</strong> Allocate advertising budgets seasonally, with increased spending on electronic/pop campaigns in Q2-Q3 and classical/jazz campaigns in Q4-Q1. Target holiday periods with genre-appropriate campaigns.</li>
             </ul>
-            <h3>Moods Match the Season:</h3>
+
+            <h3>Future Research Directions</h3>
             <ul>
-                <li>Upbeat genres (Pop, Hip-Hop, Electronic) surge in summer while calmer genres (Jazz, Classical) peak in winter.</li>
-            </ul>
-            <h3>Strategic Opportunities:</h3>
-            <ul>
-                <li>Platforms and artists can optimize releases and recommendations by aligning with predictable seasonal genre preferences.</li>
+                <li><strong>Geographic Analysis:</strong> Investigate whether seasonal patterns differ between northern/southern hemispheres or vary by climate zones</li>
+                <li><strong>Demographic Factors:</strong> Analyze if age groups, genders, or cultural backgrounds show different seasonal music preferences</li>
+                <li><strong>Activity Context:</strong> Explore connections between listening context (commuting, exercising, studying) and seasonal genre choices</li>
+                <li><strong>Predictive Modeling:</strong> Develop machine learning models to forecast seasonal trends and identify emerging genre-season relationships</li>
             </ul>
         </div>
     </section>
 
     <!-- Thank You -->
-    <section id="thank-you" class="section">
+    <section id="thank-you" class="section thank-you-section">
         <div class="content-box">
-            <h1>THANK YOU FOR VISITING!!</h1>
+            <h1>THANK YOU FOR VISITING!</h1>
+            <p style="text-align: center; font-size: 20px; margin-top: 20px;">
+                Explore the interactive visualizations above to discover more insights
+            </p>
         </div>
     </section>
 
